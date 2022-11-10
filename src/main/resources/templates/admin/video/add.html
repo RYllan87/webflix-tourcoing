@@ -1,0 +1,78 @@
+<form action="/admin/videos/add" method="post" class="my-5" data-th-object="${videoEntity}" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label data-th-for="name" class="form-label">Nom de la vidéo</label>
+        <input type="text" class="form-control" data-th-classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''" data-th-field="*{name}" required>
+        <div class="invalid-feedback" data-th-errors="*{name}"></div>
+
+    </div>
+    <div class="mb-3">
+        <label data-th-for="duration" class="form-label">Durée</label>
+        <input type="number" class="form-control" data-th-classappend="${#fields.hasErrors('duration')} ? 'is-invalid' : ''" data-th-field="*{duration}"
+               aria-describedby="duration-help" required>
+        <div id="duration-help" class="form-text">Mettre en seconde la durée de la vidéo</div>
+
+        <div class="invalid-feedback" data-th-errors="*{duration}"></div>
+    </div>
+    <div class="mb-3">
+        <label data-th-for="originCountry" class="form-label">Pays d'origine</label>
+        <input type="text" class="form-control" data-th-classappend="${#fields.hasErrors('originCountry')} ? 'is-invalid' : ''" data-th-field="*{originCountry}" required>
+
+        <div class="invalid-feedback" data-th-errors="*{originCountry}"></div>
+    </div>
+    <div class="mb-3">
+        <label data-th-for="synopsis" class="form-label">Synopsis</label>
+        <textarea class="form-control" data-th-classappend="${#fields.hasErrors('synopsis')} ? 'is-invalid' : ''" data-th-field="*{synopsis}" rows="10" required></textarea>
+
+        <div class="invalid-feedback" data-th-errors="*{synopsis}"></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" data-th-for="video-bin">Video</label>
+        <input type="file" class="form-control" id="video-bin" name="video-bin"
+               accept="video/*"
+               aria-describedby="url-video-help" >
+        <div id="url-video-help" class="form-text">Formats acceptés : MP4 | MKV | AVCHD | WebM</div>
+
+        <div class="invalid-feedback">
+            Si tu enregistres une vidéo, il faut bien mettre un fichier 🥹
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" data-th-for="cover-bin">Photo de couverture</label>
+        <input type="file" class="form-control" id="cover-bin" name="cover-bin"
+               accept="image/jpeg, image/png"
+               aria-describedby="url-cover-help" >
+         <div id="cover-help" class="form-text">Formats acceptés : PNG | JPEG | JPG</div>
+
+        <div class="invalid-feedback">
+            Pas très jolie sans image 🥹
+        </div>
+    </div>
+    <div class="mb-3">
+        <label data-th-for="productYear" class="form-label">Année de production</label>
+        <input type="number" class="form-control" data-th-classappend="${#fields.hasErrors('productYear')} ? 'is-invalid' : ''" data-th-field="*{productYear}" min="1900" max="2100" required>
+
+        <div class="invalid-feedback" data-th-errors="*{productYear}"></div>
+    </div>
+    <div class="mb-3">
+        <label data-th-for="datePublished" class="form-label">Date et heure, publication de la vidéo</label>
+        <input type="date" class="form-control" data-th-classappend="${#fields.hasErrors('datePublished')} ? 'is-invalid' : ''" data-th-field="*{datePublished}">
+        <div class="invalid-feedback" data-th-errors="*{datePublished}"></div>
+    </div>
+    <div class="mb-3">
+        <label data-th-for="dateDeleted" class="form-label">Date et heure, suppression de la vidéo</label>
+        <input type="date" class="form-control" data-th-classappend="${#fields.hasErrors('dateDeleted')} ? 'is-invalid' : ''" data-th-field="*{dateDeleted}">
+        <div class="invalid-feedback" data-th-errors="*{dateDeleted}"></div>
+    </div>
+    <div class="mb-3">
+        <label data-th-for="category" class="form-label">Catégorie de la vidéo</label>
+        <select class="form-select" data-th-classappend="${#fields.hasErrors('category')} ? 'is-invalid' : ''" name="category" data-th-field="*{category}" required>
+            <option value="" selected>Choisir la catégorie</option>
+            <option data-th-value="${c.id}" data-th-each="c : ${cats}" data-th-text="${c.name}">Romance</option>
+        </select>
+        <div class="invalid-feedback" data-th-errors="*{category}"></div>
+    </div>
+    <div class="row justify-content-evenly">
+        <button type="submit" class="btn btn-primary col-4">Envoyer</button>
+        <button type="reset" class="btn btn-warning col-4">Réinitialiser</button>
+    </div>
+</form>

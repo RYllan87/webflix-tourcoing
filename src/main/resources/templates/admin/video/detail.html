@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <style>
+        .row-perso {
+            min-height: 2rem;
+            margin: 2rem 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(249, 235, 251, 0.4);
+        }
+        .row-perso > div:first-child:after {
+            content: " : ";
+        }
+    </style>
+    <title>Admin</title>
+</head>
+<body>
+<div class="container d-flex">
+    <div class="col-4 my-5">
+            <img data-th-src="|/files/${video.cover}|" alt="" class="img-fluid">
+    </div>
+    <div class="col-1"></div>
+    <div class="col-7">
+        <div>
+            <div class="my-5">
+                <video style="width: 100%;height: auto" data-th-src="|/files/${video.urlVideo}|" autoplay loop controls></video>
+            </div>
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>Titre</div>
+                <div data-th-text="${video.name}"></div>
+            </div>
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>Durée</div>
+                <div data-th-text="${video.duration}"></div>
+            </div>
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>Origine</div>
+                <div data-th-text="${video.originCountry}"></div>
+            </div>
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>Date de production</div>
+                <div  data-th-text="${video.productYear}"></div>
+            </div>
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>Synopsis</div>
+                <div style="text-align: right"  data-th-text="${video.synopsis}"></div>
+            </div>
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>Date de publication</div>
+                <div data-th-text="${#calendars.format(video.datePublished, 'dd-MM-yyyy')}"></div>
+            </div>
+            <div class="row-perso d-flex flex-wrap justify-content-between">
+                <div>Date de suppresion</div>
+                <div data-th-text="${#calendars.format(video.dateDeleted, 'dd-MM-yyyy')}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+</body>
+</html>
